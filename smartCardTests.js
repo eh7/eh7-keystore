@@ -43,7 +43,7 @@ var key = new Buffer(password)
 var scryptParameters = scrypt.paramsSync(runTime)
 var kdfResult = scrypt.kdfSync(key, scryptParameters)
 console.log(kdfResult.toString('hex'))
-console.log(kdfResult.toString('hex').substr(16,16) + keyfile.crypto.ciphertext)
+//console.log(kdfResult.toString('hex').substr(16,16) + keyfile.crypto.ciphertext)
 
 process.exit(0)
 
