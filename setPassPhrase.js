@@ -11,12 +11,21 @@ const phraseBytes = aesjs.utils.utf8.toBytes(phrase)
 
 var myArgs = process.argv.slice(2);
 
+if(!myArgs[0]) {
+  console.log("USAGE: node setPassPhrase.js" + " <password for keystore>")
+  process.exit(1)
+}
+
 var key = Buffer.from(myArgs[0])
 var salt = crypto.randomBytes(32)
-var result = scrypt.hashSync(key,{"N":Math.pow(2,18),"r":8,"p":1},32,salt);
+var result = scrypt.hashSync(key,{"N":Math.pow(2,18),"r":8,"p":1},32,salt)
+//console.log(result.toString('hex'))
 var aesCtr = new aesjs.ModeOfOperation.ctr(result, new aesjs.Counter(5))
 var encryptedBytes = aesCtr.encrypt(phraseBytes)
 var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes)
+//console.log(encryptedHex)
+
+
 
 //var keystore = salt.toString('hex') + (encryptedHex.length).toString(16).padStart(4,'0') + encryptedHex
 var keystore = {}
@@ -26,37 +35,25 @@ keystore.ciphertext = encryptedHex
 
 console.log(JSON.stringify(keystore))
 
-console.log(keystore.salt.toString('hex'))
-console.log(salt.toString('hex'))
-var result = scrypt.hashSync(key,{"N":Math.pow(2,18),"r":8,"p":1},32,keystore.salt);
-//var encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex)
-var encryptedBytes = aesjs.utils.hex.toBytes(keystore.ciphertext)
+  //------------------------------------------------------//
+ // END HERE, below this point to test rebuilding phrase //
+//------------------------------------------------------//
+
+/*
+var k_salt = Buffer.from(keystore.salt,'hex')
+var k_len  = Buffer.from(keystore.len,'hex')
+var k_ciphertext  = Buffer.from(keystore.ciphertext,'hex')
+
+//console.log(k_salt)
+//console.log(salt)
+
+var result = scrypt.hashSync(key,{"N":Math.pow(2,18),"r":8,"p":1},32,k_salt);
+//console.log(result)
+var encryptedBytes = aesjs.utils.hex.toBytes(k_ciphertext.toString('hex'))
 var aesCtr = new aesjs.ModeOfOperation.ctr(result, new aesjs.Counter(5))
 var decryptedBytes = aesCtr.decrypt(encryptedBytes)
 var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes)
 console.log(decryptedText)
-
-
-
-/*
-var result = scrypt.hashSync(key,{"N":Math.pow(2,18),"r":8,"p":1},32,salt)
-var aesKey = []
-for (var i = 0; i < result.length; i+=1) {
-  aesKey.push(result[i])
-}
-console.log(result.toString('hex'))
-*/
-
-/*
-console.log(keystore.substr(0,64))
-console.log(keystore.substr(64,4))
-console.log(keystore.substr(68))
-console.log(keystore.substr(68).length)
-console.log((keystore.substr(68).length).toString(16))
-//console.log(encryptedHex,encryptedHex.length,salt.toString('hex'))
-
-var encryptedHex = "0001020311223344556677889900"
-console.log((encryptedHex.length).toString(16).padStart(4,'0'))
-
 process.exit()
 */
+

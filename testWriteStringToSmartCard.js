@@ -54,7 +54,7 @@ if(byte < 16) {
   console.log(blockHeader + thisHexBlockNumber + " 10" + blockBytes)
 } else
   console.log(blockHeader + thisHexBlockNumber + " 10" + blockBytes)
-  console.log("FF B0 00 " + thisHexBlockNumber + " 10")
+console.log("FF B0 00 " + thisHexBlockNumber + " 10")
 
 
 /*
