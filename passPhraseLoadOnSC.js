@@ -14,7 +14,7 @@ var k_ciphertext  = Buffer.from(keystore.ciphertext,'hex')
 
 //console.log(k_salt,k_len,k_ciphertext)
 
-const keystoreLength = Buffer.from((JSON.stringify(keystore).length).toString(16).padStart(4,'0'))
+const keystoreLength = Buffer.from((JSON.stringify(keystore).length).toString(16).padStart(4,'0'), 'hex')
 
 const keystoreString = Buffer.from(JSON.stringify(keystore))
 

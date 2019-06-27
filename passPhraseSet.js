@@ -27,6 +27,8 @@ var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes)
 
 
 
+//console.log(encryptedHex.length)
+//console.log((encryptedHex.length).toString(16).padStart(4,'0'))
 //var keystore = salt.toString('hex') + (encryptedHex.length).toString(16).padStart(4,'0') + encryptedHex
 var keystore = {}
 keystore.salt = salt.toString('hex')
