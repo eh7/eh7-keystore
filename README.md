@@ -6,7 +6,7 @@ Tests and development ideas around storage of secret data.
 
 node passPhraseSet.js password > keystore.eh7.00.json
 
-node passPhraseGet.js password ./keystore.eh7.00.json
+node passPhraseGet.js password keystore.eh7.00.json
 
 node passPhraseLoadOnSC.js keystore.eh7.00.json > keystore.eh7.00.dataload
 
