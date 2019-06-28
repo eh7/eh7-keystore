@@ -1,8 +1,8 @@
 
 var myArgs = process.argv.slice(2);
 
-if(!myArgs[0]) {
-  console.log("USAGE: node getPassPhrase.js" + " <password for keystore>")
+if(!myArgs[1]) {
+  console.log("USAGE: node getPassPhrase.js" + " <password for keystore> <keystore_file>")
   process.exit(1)
 } 
 
@@ -11,7 +11,8 @@ const aesjs = require('aes-js')
 const scrypt = require("scrypt")
 const hdkey = require('ethereumjs-wallet/hdkey')
 
-const keystore = require('./keystore.eh7.json')
+//const keystore = require('./keystore.eh7.json')
+const keystore = require('./' + myArgs[1])
 
 console.log(keystore)
 
@@ -30,3 +31,10 @@ var aesCtr = new aesjs.ModeOfOperation.ctr(result, new aesjs.Counter(5))
 var decryptedBytes = aesCtr.decrypt(encryptedBytes)
 var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes)
 console.log(decryptedText)
+
+var phrase = decryptedText
+//console.log(phrase)
+let myHdWallet = hdkey.fromMasterSeed(phrase)
+console.log('address', "0x"+myHdWallet.getWallet().getPrivateKey().toString('hex'))
+console.log('address', "0x"+myHdWallet.getWallet().getAddress().toString('hex'))
+

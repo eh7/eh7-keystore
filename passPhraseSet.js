@@ -5,7 +5,9 @@ const scrypt = require("scrypt")
 const bip39 = require('bip39')
 const hdkey = require('ethereumjs-wallet/hdkey')
 
-const phrase = 'matrix faculty chicken craft phrase hint siege arena home sheriff skate divorce';
+//const phrase = 'matrix faculty chicken craft phrase hint siege arena home sheriff skate divorce';
+
+const phrase = bip39.generateMnemonic()
 
 const phraseBytes = aesjs.utils.utf8.toBytes(phrase)
 

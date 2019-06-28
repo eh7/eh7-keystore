@@ -11,6 +11,7 @@
   "dependencies": {
     "aes-js": "^3.1.2",
     "argon2": "^0.24.0",
+    "async": "^3.1.0",
     "bip39": "^3.0.2",
     "ethereumjs-wallet": "^0.6.3",
     "pcsclite": "^0.6.0",

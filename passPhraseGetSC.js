@@ -71,6 +71,12 @@ pcsc.on('reader', function(reader) {
     var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes)
     console.log(decryptedText)
 
+    var phrase = decryptedText
+    //console.log(phrase)
+    let myHdWallet = hdkey.fromMasterSeed(phrase)
+    console.log('paddress', "0x"+myHdWallet.getWallet().getPrivateKey().toString('hex'))
+    console.log('aaddress', "0x"+myHdWallet.getWallet().getAddress().toString('hex'))
+
     process.exit()
   }
 

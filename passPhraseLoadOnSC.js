@@ -1,10 +1,18 @@
 
+var myArgs = process.argv.slice(2);
+
+if(!myArgs[0]) {
+  console.log("USAGE: node passPhraseLoadOnSC.js" + " <keystore_file>")
+  process.exit(1)
+}
+
 var fs = require('fs')
 const aesjs = require('aes-js')
 const scrypt = require("scrypt")
 const hdkey = require('ethereumjs-wallet/hdkey')
 
-const keystore = require('./keystore.eh7.json')
+//const keystore = require('./keystore.eh7.json')
+const keystore = require('./' + myArgs[0])
 
 console.log(keystore)
 
