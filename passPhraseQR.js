@@ -14,7 +14,7 @@ const hdkey = require('ethereumjs-wallet/hdkey')
 //const keystore = require('./keystore.eh7.json')
 const keystore = require('./' + myArgs[0])
 
-console.log(keystore)
+//console.log(keystore)
 
 var k_salt = Buffer.from(keystore.salt,'hex')
 var k_len  = Buffer.from(keystore.len,'hex')
@@ -27,14 +27,31 @@ const keystoreLength = Buffer.from((JSON.stringify(keystore).length).toString(16
 const keystoreString = Buffer.from(JSON.stringify(keystore))
 
 //console.log(keystoreLength)
-//console.log(keystoreString)
+console.log(keystoreString)
+
+var qr = require('qr-image')
+console.log(keystoreString.toString('utf8'))
+var qr_svg = qr.image(keystoreString.toString('hex'), { type: 'png' });
+//var qr_svg = qr.image("abc", { type: 'png' });
+qr_svg.pipe(require('fs').createWriteStream(myArgs[0]+'.png'))
+//var svg_string = qr.imageSync('I love QR!', { type: 'png' })
+
+/*
+var qr = require("qr-image")
+var qr_svg = qr.image('I love QR!', { type: 'svg' });
+qr_svg.pipe(require('fs').createWriteStream('i_love_qr.svg'));
+var svg_string = qr.imageSync('I love QR!', { type: 'svg' });
+*/
+
+
+/*
+//process.exit()
 
 
 var messageBuffer = Buffer.concat([keystoreLength,keystoreString])
 //console.log(messageBuffer)
 
-console.log(messageBuffer)
-process.exit()
+console.log(messageBuffer.toString('hex'))
 
 var sector = 1
 var block = 0
@@ -101,3 +118,4 @@ if(byte < 16) {
 
 console.log("//---------------//")
 console.log(addKeystoreToSC)
+*/
