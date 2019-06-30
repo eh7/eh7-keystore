@@ -15,6 +15,7 @@
     "bip39": "^3.0.2",
     "ethereumjs-wallet": "^0.6.3",
     "pcsclite": "^0.6.0",
+    "qr": "^0.2.4",
     "qr-image": "^3.2.0",
     "scrypt": "^6.0.3",
     "scryptsy": "^2.1.0"

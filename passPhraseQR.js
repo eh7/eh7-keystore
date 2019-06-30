@@ -29,6 +29,19 @@ const keystoreString = Buffer.from(JSON.stringify(keystore))
 //console.log(keystoreLength)
 console.log(keystoreString)
 
+var Encoder = require('qr').Encoder
+var encoder = new Encoder
+//encoder.on('end', function(){
+//})
+encoder.encode(keystoreString.toString('utf8'), '/tmp/my_qr_file.png',{
+  background_color:'#ffffff',
+  foreground_color:'#000000',
+  margin: 4,
+  level: 'L',
+  dot_siz:1
+})
+
+/*
 var qr = require('qr-image')
 console.log(keystoreString.toString('utf8'))
 var qr_svg = qr.image(keystoreString.toString('hex'), { type: 'png' });
@@ -36,7 +49,6 @@ var qr_svg = qr.image(keystoreString.toString('hex'), { type: 'png' });
 qr_svg.pipe(require('fs').createWriteStream(myArgs[0]+'.png'))
 //var svg_string = qr.imageSync('I love QR!', { type: 'png' })
 
-/*
 var qr = require("qr-image")
 var qr_svg = qr.image('I love QR!', { type: 'svg' });
 qr_svg.pipe(require('fs').createWriteStream('i_love_qr.svg'));
