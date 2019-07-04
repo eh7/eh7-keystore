@@ -33,7 +33,7 @@ var Encoder = require('qr').Encoder
 var encoder = new Encoder
 //encoder.on('end', function(){
 //})
-encoder.encode(keystoreString.toString('utf8'), '/tmp/my_qr_file.png',{
+encoder.encode(keystoreString.toString('utf8'), '/tmp/'+myArgs[0]+'.png',{
   background_color:'#ffffff',
   foreground_color:'#000000',
   margin: 4,

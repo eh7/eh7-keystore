@@ -1,8 +1,10 @@
 
 var myArgs = process.argv.slice(2);
 
+const thisFrilename = __filename.slice(__dirname.length + 1)
+
 if(!myArgs[0]) {
-  console.log("USAGE: node passPhraseLoadOnSC.js" + " <keystore_file>")
+  console.log("USAGE: node " + thisFrilename + " <keystore_file>")
   process.exit(1)
 }
 
